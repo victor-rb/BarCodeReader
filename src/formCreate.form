@@ -13,7 +13,7 @@
       <preferredSize width="700" height="500"/>
       <requestFocusEnabled value="false"/>
     </properties>
-    <border type="bevel-lowered">
+    <border type="line">
       <title-color color="-10986659"/>
       <color color="-16777216"/>
     </border>
@@ -33,19 +33,18 @@
       </scrollpane>
       <hspacer id="4c164">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="20" height="-1"/>
+          </grid>
         </constraints>
       </hspacer>
       <hspacer id="62ac5">
         <constraints>
-          <grid row="7" column="23" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="23" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="20" height="-1"/>
+          </grid>
         </constraints>
       </hspacer>
-      <vspacer id="ba4a3">
-        <constraints>
-          <grid row="0" column="22" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
       <vspacer id="8c656">
         <constraints>
           <grid row="19" column="22" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -205,6 +204,14 @@
         </constraints>
         <properties/>
       </component>
+      <component id="a8f99" class="javax.swing.JLabel" binding="lbInstruction">
+        <constraints>
+          <grid row="18" column="2" row-span="1" col-span="21" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Sistema de Controle de Acesso"/>
+        </properties>
+      </component>
       <component id="c8b23" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -214,14 +221,6 @@
           <enabled value="true"/>
           <foreground color="-853249"/>
           <text value="PORSCHE - Controle de Acesso"/>
-        </properties>
-      </component>
-      <component id="a8f99" class="javax.swing.JLabel" binding="lbInstruction">
-        <constraints>
-          <grid row="18" column="1" row-span="1" col-span="22" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Sistema de Controle de Acesso"/>
         </properties>
       </component>
     </children>
