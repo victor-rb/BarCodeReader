@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_barcodereader" default="compile.module.barcodereader">
+  <dirname property="module.barcodereader.basedir" file="${ant.file.module_barcodereader}"/>
+  
+  <property name="module.jdk.home.barcodereader" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.barcodereader" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.barcodereader" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.barcodereader" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="barcodereader.output.dir" value="${module.barcodereader.basedir}/out/production/BarCodeReader"/>
+  <property name="barcodereader.testoutput.dir" value="${module.barcodereader.basedir}/out/test/BarCodeReader"/>
+  
+  <path id="barcodereader.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="barcodereader.module.production.classpath">
+    <path refid="${module.jdk.classpath.barcodereader}"/>
+  </path>
+  
+  <path id="barcodereader.runtime.production.module.classpath">
+    <pathelement location="${barcodereader.output.dir}"/>
+  </path>
+  
+  <path id="barcodereader.module.classpath">
+    <path refid="${module.jdk.classpath.barcodereader}"/>
+    <pathelement location="${barcodereader.output.dir}"/>
+  </path>
+  
+  <path id="barcodereader.runtime.module.classpath">
+    <pathelement location="${barcodereader.testoutput.dir}"/>
+    <pathelement location="${barcodereader.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.barcodereader">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.barcodereader">
+    <patternset refid="excluded.from.module.barcodereader"/>
+  </patternset>
+  
+  <path id="barcodereader.module.sourcepath">
+    <dirset dir="${module.barcodereader.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.barcodereader" depends="compile.module.barcodereader.production,compile.module.barcodereader.tests" description="Compile module BarCodeReader"/>
+  
+  <target name="compile.module.barcodereader.production" depends="register.custom.compilers" description="Compile module BarCodeReader; production classes">
+    <mkdir dir="${barcodereader.output.dir}"/>
+    <javac2 destdir="${barcodereader.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.barcodereader}/javac">
+      <compilerarg line="${compiler.args.barcodereader}"/>
+      <bootclasspath refid="barcodereader.module.bootclasspath"/>
+      <classpath refid="barcodereader.module.production.classpath"/>
+      <src refid="barcodereader.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.barcodereader"/>
+    </javac2>
+    
+    <copy todir="${barcodereader.output.dir}">
+      <fileset dir="${module.barcodereader.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.barcodereader.tests" depends="register.custom.compilers,compile.module.barcodereader.production" description="compile module BarCodeReader; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.barcodereader" description="cleanup module">
+    <delete dir="${barcodereader.output.dir}"/>
+    <delete dir="${barcodereader.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BarCodeReader">
+    <output-path>$PROJECT_DIR$/out/artifacts/BarCodeReader</output-path>
+    <root id="archive" name="BarCodeReader.jar">
+      <element id="module-output" name="BarCodeReader" />
+    </root>
+  </artifact>
+</component>
