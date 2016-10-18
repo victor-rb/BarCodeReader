@@ -7,8 +7,10 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Scanner;
 
 
 /**
@@ -25,7 +27,9 @@ public class formCreate {
 
     private int rowIndex;
 
-    private File buffer = null;
+    private File bufferFile = null;
+
+    private File infFile;
 
     private JTextField firstName;
     private JTextField lastName;
@@ -59,18 +63,18 @@ public class formCreate {
             DateFormat dateForm = new SimpleDateFormat("yy-MM-dd");
             Date date = new Date();
 
-            File infFile = new File(dateForm.format(date) + " - access report.csv");
+            infFile = new File(dateForm.format(date) + " - access report.csv");
 
             if (!infFile.exists()) {
 
                 infFile.createNewFile();
-                buffer = infFile.getAbsoluteFile();
+                bufferFile = infFile.getAbsoluteFile();
                 fileWriter("Name, Companian, Invited By");
 
 
 
             }else{
-                buffer = infFile.getAbsoluteFile();
+                bufferFile = infFile.getAbsoluteFile();
             }
 
         }catch (IOException e){
@@ -81,7 +85,7 @@ public class formCreate {
     private void fileWriter(String context){
         try{
 
-            FileWriter fw = new FileWriter(buffer, true);
+            FileWriter fw = new FileWriter(bufferFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
 
             bw.write(context);
@@ -108,9 +112,9 @@ public class formCreate {
 
         chbtAcompany.addActionListener(e ->{
 
-            txaAcompany.setText("");
 
-            if (!txaAcompany.isFocusable()){
+
+            if (chbtAcompany.isSelected()){
                 txaAcompany.setFocusable(true);
             }else{
                 txaAcompany.setFocusable(false);
@@ -120,16 +124,22 @@ public class formCreate {
 
         saveBt.addActionListener(e -> {
 
-            if (!chbtAcompany.isSelected()){
-                txaAcompany.setText("Sem Acompanhante");
+            if (firstName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Primeiro nome nescessario para Cadastro");
+            }else {
+
+                if (!chbtAcompany.isSelected()) {
+                    txaAcompany.setText("Sem Acompanhante");
+                }
+
+                changeBT.setSelected(false);
+
+                insertTable(firstName.getText() + " " + lastName.getText(), txaAcompany.getText().replaceAll("\n", " - "), invitedBy.getSelectedItem().toString());
+
+                fileWriter(firstName.getText() + " " + lastName.getText() + "," + txaAcompany.getText().replaceAll("\n", " - ") + "," + invitedBy.getSelectedItem().toString());
+
+                clearInfo();
             }
-
-            insertTable(firstName.getText() +" "+ lastName.getText(), txaAcompany.getText().replaceAll("\n", " - "), invitedBy.getSelectedItem().toString());
-
-            fileWriter(firstName.getText() + " " + lastName.getText() +","+ txaAcompany.getText().replaceAll("\n", " - ") +","+ invitedBy.getSelectedItem().toString());
-
-            clearInfo();
-
 
 
         });
@@ -144,6 +154,8 @@ public class formCreate {
                 saveBt.setEnabled(false);
                 cancelBT.setEnabled(true);
 
+
+
                 rowIndex = infTable.getSelectedRow();
 
                 String[] buffName;
@@ -157,10 +169,16 @@ public class formCreate {
 
                 txaAcompany.setText(buffIns.replaceAll(" - ", "\n"));
 
-
-
+                if (buffIns.equals("Sem Acompanhante")){
+                    chbtAcompany.setSelected(false);
+                    txaAcompany.setFocusable(false);
+                }else{
+                    chbtAcompany.setSelected(true);
+                }
             }
         });
+
+
 
 
         changeBT.addActionListener(e-> {
@@ -177,6 +195,8 @@ public class formCreate {
             infTable.getModel().setValueAt(firstName.getText() +" "+ lastName.getText(), rowIndex, 0);
             infTable.getModel().setValueAt(txaAcompany.getText(), rowIndex, 1);
             infTable.getModel().setValueAt(invitedBy.getSelectedItem().toString(), rowIndex, 2);
+
+
 
             clearInfo();
 
@@ -209,11 +229,15 @@ public class formCreate {
 
     private void indexFind(String name, int cbIndex){
         invitedBy.setSelectedIndex(cbIndex);
-        if (!Objects.equals(name, invitedBy.getSelectedItem().toString())){
-            cbIndex ++;
-            indexFind(name, cbIndex);
-        }else{
-            invitedBy.setSelectedIndex(cbIndex);
+
+        if (!(name == null)) {
+
+            if (!Objects.equals(name, invitedBy.getSelectedItem().toString())) {
+                cbIndex++;
+                indexFind(name, cbIndex);
+            } else {
+                invitedBy.setSelectedIndex(cbIndex);
+            }
         }
 
     }
@@ -223,6 +247,8 @@ public class formCreate {
         lastName.setText("");
         txaAcompany.setText("");
         invitedBy.setSelectedIndex(0);
+        chbtAcompany.setSelected(false);
+        txaAcompany.setFocusable(false);
     }
 
     private void focusableListener(){
