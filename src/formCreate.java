@@ -1,5 +1,8 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
@@ -7,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
@@ -19,6 +21,8 @@ import java.util.Scanner;
 public class formCreate {
 
 
+
+
     private static DefaultTableModel model = new DefaultTableModel(){
         public boolean isCellEditable(int rowIndex, int mColIndex) {
             return false;
@@ -28,8 +32,6 @@ public class formCreate {
     private int rowIndex;
 
     private File bufferFile = null;
-
-    private File infFile;
 
     private JTextField firstName;
     private JTextField lastName;
@@ -63,7 +65,7 @@ public class formCreate {
             DateFormat dateForm = new SimpleDateFormat("yy-MM-dd");
             Date date = new Date();
 
-            infFile = new File(dateForm.format(date) + " - access report.csv");
+            File infFile = new File(dateForm.format(date) + " - access report.csv");
 
             if (!infFile.exists()) {
 
@@ -75,6 +77,7 @@ public class formCreate {
 
             }else{
                 bufferFile = infFile.getAbsoluteFile();
+                resumeTable();
             }
 
         }catch (IOException e){
@@ -100,7 +103,7 @@ public class formCreate {
     }
 
 
-    public formCreate() {
+    private formCreate() {
 
         txaAcompany.setFocusable(false);
 
@@ -112,12 +115,12 @@ public class formCreate {
 
         chbtAcompany.addActionListener(e ->{
 
-
-
             if (chbtAcompany.isSelected()){
                 txaAcompany.setFocusable(true);
+                txaAcompany.setText("");
             }else{
                 txaAcompany.setFocusable(false);
+                txaAcompany.setText("Sem Acompanhante");
             }
 
         });
@@ -139,6 +142,7 @@ public class formCreate {
                 fileWriter(firstName.getText() + " " + lastName.getText() + "," + txaAcompany.getText().replaceAll("\n", " - ") + "," + invitedBy.getSelectedItem().toString());
 
                 clearInfo();
+
             }
 
 
@@ -174,6 +178,7 @@ public class formCreate {
                     txaAcompany.setFocusable(false);
                 }else{
                     chbtAcompany.setSelected(true);
+                    txaAcompany.setFocusable(true);
                 }
             }
         });
@@ -193,10 +198,10 @@ public class formCreate {
             changeBT.setEnabled(false);
 
             infTable.getModel().setValueAt(firstName.getText() +" "+ lastName.getText(), rowIndex, 0);
-            infTable.getModel().setValueAt(txaAcompany.getText(), rowIndex, 1);
+            infTable.getModel().setValueAt(txaAcompany.getText().replaceAll("\n", " - "), rowIndex, 1);
             infTable.getModel().setValueAt(invitedBy.getSelectedItem().toString(), rowIndex, 2);
 
-
+            rewrite();
 
             clearInfo();
 
@@ -220,6 +225,7 @@ public class formCreate {
         model.addColumn("Nome");
         model.addColumn("Acompanhante");
         model.addColumn("Convidado Por:");
+        infTable.setFont(new Font("Porsche News Gothic", Font.PLAIN, 12));
 
     }
 
@@ -301,6 +307,44 @@ public class formCreate {
             }
         });
 
+    }
+
+    private void rewrite(){
+
+        try {
+
+            bufferFile.delete();
+            bufferFile.createNewFile();
+
+            fileWriter("Name, Companian, Invited By");
+
+            for (int rowIdx = 0; rowIdx < infTable.getRowCount(); rowIdx++)
+                fileWriter(
+
+                        infTable.getModel().getValueAt(rowIdx, 0).toString() + ","
+                        + infTable.getModel().getValueAt(rowIdx,1).toString().replaceAll("\n", " - ") + ","
+                        + infTable.getModel().getValueAt(rowIdx, 2).toString()
+
+                );
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void resumeTable(){
+        try{
+            Scanner read = new Scanner(bufferFile);
+
+            while (read.hasNext()){
+                String[] buffRead = read.nextLine().split(",");
+
+                if (buffRead[0].equals("Name")) continue;
+
+                insertTable(buffRead[0],buffRead[1], buffRead[2]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
