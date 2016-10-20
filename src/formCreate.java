@@ -1,4 +1,4 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,9 +20,6 @@ import java.util.Scanner;
  */
 public class formCreate {
 
-
-
-
     private static DefaultTableModel model = new DefaultTableModel(){
         public boolean isCellEditable(int rowIndex, int mColIndex) {
             return false;
@@ -32,6 +29,8 @@ public class formCreate {
     private int rowIndex;
 
     private File bufferFile = null;
+
+
 
     private JTextField firstName;
     private JTextField lastName;
@@ -47,13 +46,15 @@ public class formCreate {
     private JLabel lbInstruction;
 
     static void exeForm() {
-        JFrame frame = new JFrame("formCreate");
+        JFrame frame;
+        frame = new JFrame("formCreate");
         frame.setContentPane(new formCreate().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     private void fileCreate(){
@@ -346,5 +347,4 @@ public class formCreate {
             e.printStackTrace();
         }
     }
-
 }
