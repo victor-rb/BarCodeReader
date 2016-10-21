@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="formCreate">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="21" column-count="24" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="21" column-count="26" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="800" height="600"/>
+      <xy x="20" y="20" width="904" height="650"/>
     </constraints>
     <properties>
       <autoscrolls value="false"/>
       <background color="-1"/>
       <foreground color="-6118497"/>
-      <minimumSize width="800" height="600"/>
-      <preferredSize width="700" height="500"/>
+      <minimumSize width="800" height="580"/>
+      <preferredSize width="800" height="560"/>
       <requestFocusEnabled value="false"/>
     </properties>
     <border type="line">
@@ -20,7 +20,7 @@
     <children>
       <scrollpane id="db29" binding="scroll">
         <constraints>
-          <grid row="2" column="6" row-span="15" col-span="17" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="6" row-span="15" col-span="19" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-2105377"/>
@@ -35,30 +35,25 @@
       </scrollpane>
       <hspacer id="4c164">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="0" column="0" row-span="21" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="20" height="-1"/>
           </grid>
         </constraints>
       </hspacer>
       <hspacer id="62ac5">
         <constraints>
-          <grid row="8" column="23" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="2" column="25" row-span="18" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="20" height="-1"/>
           </grid>
         </constraints>
       </hspacer>
-      <vspacer id="8c656">
-        <constraints>
-          <grid row="19" column="22" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
       <component id="82d56" class="javax.swing.JLabel">
         <constraints>
-          <grid row="12" column="1" row-span="5" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="14" column="1" row-span="3" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
-          <icon value="porsche-logo.png"/>
+          <icon value="images/porsche-logo.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -72,35 +67,6 @@
           <font name="Porsche News Gothic"/>
           <foreground color="-1"/>
           <text value="Salvar"/>
-        </properties>
-      </component>
-      <component id="70287" class="javax.swing.JButton" binding="changeBT">
-        <constraints>
-          <grid row="17" column="22" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12516348"/>
-          <enabled value="false"/>
-          <font name="Porsche News Gothic"/>
-          <foreground color="-1"/>
-          <text value="Alterar"/>
-        </properties>
-      </component>
-      <hspacer id="58d40">
-        <constraints>
-          <grid row="17" column="6" row-span="1" col-span="14" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <component id="7bbf4" class="javax.swing.JButton" binding="cancelBT">
-        <constraints>
-          <grid row="17" column="20" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12516348"/>
-          <enabled value="false"/>
-          <font name="Porsche News Gothic"/>
-          <foreground color="-1"/>
-          <text value="Cancelar"/>
         </properties>
       </component>
       <component id="31201" class="javax.swing.JTextField" binding="firstName">
@@ -203,7 +169,7 @@
       </component>
       <component id="318a6" class="javax.swing.JTextArea" binding="txaAcompany">
         <constraints>
-          <grid row="9" column="1" row-span="3" col-span="5" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="9" column="1" row-span="5" col-span="5" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
@@ -222,15 +188,9 @@
           <text value="Acompanhantes"/>
         </properties>
       </component>
-      <component id="a13eb" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="18" column="1" row-span="1" col-span="22" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
       <component id="c8b23" class="javax.swing.JLabel">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="23" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="25" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-16777216"/>
@@ -242,14 +202,18 @@
       </component>
       <vspacer id="3daed">
         <constraints>
-          <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="10"/>
-          </grid>
+          <grid row="0" column="1" row-span="1" col-span="24" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="a13eb" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="19" column="1" row-span="1" col-span="24" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
       <component id="a8f99" class="javax.swing.JLabel" binding="lbInstruction">
         <constraints>
-          <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="18" column="1" row-span="1" col-span="24" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-6381922"/>
@@ -258,13 +222,48 @@
           <text value="Sistema de Controle de Acesso"/>
         </properties>
       </component>
-      <vspacer id="93a6c">
+      <component id="95470" class="javax.swing.JButton" binding="exitBT">
         <constraints>
-          <grid row="20" column="11" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="10"/>
-          </grid>
+          <grid row="17" column="24" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-      </vspacer>
+        <properties>
+          <background color="-12516348"/>
+          <enabled value="true"/>
+          <font name="Porsche News Gothic"/>
+          <foreground color="-1"/>
+          <hideActionText value="false"/>
+          <text value="Sair"/>
+        </properties>
+      </component>
+      <component id="70287" class="javax.swing.JButton" binding="changeBT">
+        <constraints>
+          <grid row="17" column="22" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12516348"/>
+          <enabled value="false"/>
+          <font name="Porsche News Gothic"/>
+          <foreground color="-1"/>
+          <text value="Alterar"/>
+        </properties>
+      </component>
+      <component id="7bbf4" class="javax.swing.JButton" binding="cancelBT">
+        <constraints>
+          <grid row="17" column="20" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12516348"/>
+          <enabled value="false"/>
+          <font name="Porsche News Gothic"/>
+          <foreground color="-1"/>
+          <text value="Cancelar"/>
+        </properties>
+      </component>
+      <hspacer id="18a40">
+        <constraints>
+          <grid row="17" column="7" row-span="1" col-span="12" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

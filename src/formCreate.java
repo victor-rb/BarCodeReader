@@ -8,6 +8,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,9 @@ public class formCreate {
 
     private File bufferFile = null;
 
+    private static URL url = System.class.getResource("/images/apps_porsche.png");
+
+    static ImageIcon icon = new ImageIcon(url);
 
 
     private JTextField firstName;
@@ -44,10 +48,13 @@ public class formCreate {
     private JTextArea txaAcompany;
     private JCheckBox chbtAcompany;
     private JLabel lbInstruction;
+    private JButton exitBT;
+
 
     static void exeForm() {
         JFrame frame;
         frame = new JFrame("formCreate");
+        frame.setIconImage(icon.getImage());
         frame.setContentPane(new formCreate().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
@@ -215,6 +222,14 @@ public class formCreate {
             saveBt.setEnabled(true);
             changeBT.setEnabled(false);
             cancelBT.setEnabled(false);
+
+        });
+
+        exitBT.addActionListener(e -> {
+
+            int opt = JOptionPane.showConfirmDialog(null, "Deseja mesmo Sair, informações não slavas serão perdidas", "Sair", JOptionPane.YES_NO_OPTION);
+
+            if (opt == JOptionPane.YES_OPTION) System.exit(0);
 
         });
 
